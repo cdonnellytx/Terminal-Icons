@@ -13,6 +13,7 @@ function Resolve-Icon {
     begin {
         $icons  = $script:userThemeData.Themes.Icon[$IconTheme]
         $colors = $script:colorSequences[$ColorTheme]
+        $glyphs = Read-TerminalIconsGlyphs
     }
 
     process {
