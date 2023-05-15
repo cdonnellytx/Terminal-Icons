@@ -83,7 +83,9 @@ https://github.com/DHowett/DirColors -->
                                 </ScriptBlock>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Length</PropertyName>
+                                <ScriptBlock>
+                                    Terminal-Icons\Format-TerminalLength $_
+                                </ScriptBlock>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <ScriptBlock>
