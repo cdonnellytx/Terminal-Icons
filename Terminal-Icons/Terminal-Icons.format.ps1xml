@@ -78,12 +78,12 @@ https://github.com/DHowett/DirColors -->
                                 <PropertyName>Mode</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <ScriptBlock>
-                                    [String]::Format('{0,10}  {1,8}', $_.LastWriteTime.ToString('d'), $_.LastWriteTime.ToString('t'))
-                                </ScriptBlock>
+                                <ScriptBlock>'{0,10:d}  {0,8:t}' -f $_.LastWriteTime</ScriptBlock>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>Length</PropertyName>
+                                <ScriptBlock>
+                                    Terminal-Icons\Format-TerminalLength $_
+                                </ScriptBlock>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <ScriptBlock>

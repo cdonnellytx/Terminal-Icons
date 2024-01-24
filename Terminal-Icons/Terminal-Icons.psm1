@@ -11,7 +11,6 @@
 # })
 
 $moduleRoot    = $PSScriptRoot
-$glyphs        = . $moduleRoot/Data/glyphs.ps1
 $escape        = [char]27
 $colorReset    = "${escape}[0m"
 $defaultTheme  = 'devblackops'

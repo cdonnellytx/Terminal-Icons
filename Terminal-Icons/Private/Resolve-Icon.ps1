@@ -13,6 +13,7 @@ function Resolve-Icon {
     begin {
         $icons  = $script:userThemeData.Themes.Icon[$IconTheme]
         $colors = $script:colorSequences[$ColorTheme]
+        $glyphs = Read-TerminalIconsGlyphs
     }
 
     process {
@@ -22,7 +23,7 @@ function Resolve-Icon {
             Target   = ''
         }
 
-        if ($FileInfo.PSIsContainer) {
+        if ($FileInfo -is [IO.DirectoryInfo]) {
             $type = 'Directories'
         } else {
             $type = 'Files'
@@ -62,7 +63,7 @@ function Resolve-Icon {
                     # Determine normal directory icon and color
                     $iconName = $icons.Types.$type.WellKnown[$FileInfo.Name]
                     if (-not $iconName) {
-                        if ($FileInfo.PSIsContainer) {
+                        if ($FileInfo -is [IO.DirectoryInfo]) {
                             $iconName = $icons.Types.$type[$FileInfo.Name]
                         } elseif ($icons.Types.$type.ContainsKey($FileInfo.Extension)) {
                             $iconName = $icons.Types.$type[$FileInfo.Extension]
@@ -81,7 +82,7 @@ function Resolve-Icon {
 
                         # Fallback if everything has gone horribly wrong
                         if (-not $iconName) {
-                            if ($FileInfo.PSIsContainer) {
+                            if ($FileInfo -is [IO.DirectoryInfo]) {
                                 $iconName = 'nf-oct-file_directory'
                             } else {
                                 $iconName = 'nf-fa-file'
@@ -94,7 +95,7 @@ function Resolve-Icon {
                 if ($colors) {
                     $colorSeq = $colors.Types.$type.WellKnown[$FileInfo.Name]
                     if (-not $colorSeq) {
-                        if ($FileInfo.PSIsContainer) {
+                        if ($FileInfo -is [IO.DirectoryInfo]) {
                             $colorSeq = $colors.Types.$type[$FileInfo.Name]
                         } elseif ($colors.Types.$type.ContainsKey($FileInfo.Extension)) {
                             $colorSeq = $colors.Types.$type[$FileInfo.Extension]
